@@ -40,45 +40,63 @@ for (let index = 0; index < 10; index++) {
   numeros.push() = prompt('Ingrese un numero: ')
 } */
 
+const menuOpciones = () => {
+  let menu = Number(
+    prompt(
+      "Seleccione la operacón que desea realizar \n1 - Consultar saldo \n2 - Retirar Dinero \n3 - Consignar dinero \n4 - Transferir \n5 - Salir"
+    )
+  );
+  return menu;
+};
+
 let saldoCuenta = 0;
 let valor = 0;
-let repetir = true
+let repetir = true;
+let usuario, contrasena
 
-while (repetir) {
-  let menu = prompt(
-    "Seleccione la operacón que desea realizar \n1 - Consultar saldo \n2 - Retirar Dinero \n3 - Consignar dinero \n4 - Transferir \n5 - Salir"
-  );
-  switch (parseInt(menu)) {
-    case 1:
-      alert("Su saldo es: " + saldoCuenta);
-      break;
-    case 2:
-      valor = Number(prompt("Inrgese el valor a retirar: "));
-      if (valor > saldoCuenta) {
-        alert("El saldo en su cuenta es menor al valor a retirar");
-      } else {
-        alert(
-          "Retiro Exitoso. Su nuevo saldo es: " +
-            (saldoCuenta = saldoCuenta - valor)
-        );
-        alert("Retiro Exitoso. Su nuevo saldo es: " + (saldoCuenta -= valor));
+usuario = prompt("Ingrese el usuario")
+if(usuario == "zapata"){
+  usuario = prompt("Ingrese la contarsena")
+  if(contrasena=="zapata"){
+    while (repetir) {
+      let opcion = menuOpciones();
+      switch (parseInt(opcion)) {
+        case 1:
+          alert("Su saldo es: " + saldoCuenta);
+          break;
+        case 2:
+          valor = Number(prompt("Inrgese el valor a retirar: "));
+          if (valor > saldoCuenta) {
+            alert("El saldo en su cuenta es menor al valor a retirar");
+          } else {
+            alert(
+              "Retiro Exitoso. Su nuevo saldo es: " +
+                (saldoCuenta = saldoCuenta - valor)
+            );
+            alert("Retiro Exitoso. Su nuevo saldo es: " + (saldoCuenta -= valor));
+          }
+          break;
+        case 3:
+          valor = Number(prompt("Inrgese el valor a retirar: "));
+          saldoCuenta += valor;
+          alert("El nuevo saldo de la cuenta es: " + saldoCuenta);
+          break;
+        case 4:
+          valor = Number(prompt("Inrgese el valor a retirar: "));
+          if (valor > saldoCuenta) {
+            alert("El saldo en su cuenta es menor al valor a transferir");
+          } else {
+            alert("Retiro Exitoso. Su nuevo saldo es: " + (saldoCuenta -= valor));
+          }
+          break;
+        case 5:
+          repetir = false;
+          break;
       }
-      break;
-    case 3:
-      valor = Number(prompt("Inrgese el valor a retirar: "));
-      saldoCuenta += valor;
-      alert("El nuevo saldo de la cuenta es: " + saldoCuenta);
-      break;
-    case 4:
-      valor = Number(prompt("Inrgese el valor a retirar: "));
-      if (valor > saldoCuenta) {
-        alert("El saldo en su cuenta es menor al valor a transferir");
-      } else {
-        alert("Retiro Exitoso. Su nuevo saldo es: " + (saldoCuenta -= valor));
-      }
-      break;
-    case 5:
-      repetir = false
-      break;
+    }
+  } else {
+    alert("Contrasena errada")
   }
+} else {
+  alert("Usuario no existe")
 }
